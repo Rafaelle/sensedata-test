@@ -3,7 +3,6 @@ const actionsTypes = {
   REMOVE_FINANCE: 'REMOVE_FINANCE',
 };
 
-
 const financiesType = {
   Entrie: 'Entrada',
   Exit: 'Saída'

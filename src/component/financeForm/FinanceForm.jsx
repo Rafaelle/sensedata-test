@@ -99,8 +99,6 @@ export const FinanceForm = () => {
                         name="title"
                         label="Título"
                         onChange={props.handleChange}
-
-
                     />
 
                     <Field
@@ -109,8 +107,8 @@ export const FinanceForm = () => {
                         name="type"
                         label="Tipo"
                         onChange={props.handleChange}
-                        defaultValue={financiesType.Exit}
                     >
+                        <option value=''>Tipo</option>
                         <option value={financiesType.Exit}>{financiesType.Exit}</option>
                         <option value={financiesType.Entrie} >{financiesType.Entrie}</option>
 
