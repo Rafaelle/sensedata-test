@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { actions as actionsFinance } from '../../actions/financies.action';
 import { Formik, useField } from 'formik';
+import * as yup from 'yup';
+import { financiesType } from '../../constants/financies';
 
 
 const Field = ({ label, ...props }) => {
@@ -9,11 +11,23 @@ const Field = ({ label, ...props }) => {
     return (
         <div className="form-group">
             <label htmlFor={props.id}>{label}</label>
+
+            { props.type == 'select'? 
+            <select
+            {...field}
+            {...props}
+            className={meta.error && meta.touched ? 'is-invalid' : ''}
+            >
+                {props.children}
+            </select>
+            :
             <input
-                {...field}
-                {...props}
-                className={meta.error && meta.touched ? 'is-invalid' : ''}
-            />
+            {...field}
+            {...props}
+            className={meta.error && meta.touched ? 'is-invalid' : ''}
+        />
+            }
+
             {meta.error && meta.touched ? (
                 <div className="invalid-feedback">{meta.error}</div>
             ) : null}
@@ -21,21 +35,39 @@ const Field = ({ label, ...props }) => {
     );
 };
 
+
+const esquema = yup.object({
+    title: yup
+        .string()
+        .required('O nome é obrigatório'),
+    type: yup
+        .string()
+        .required('O tipo é obrigatório'),
+    category: yup
+        .string()
+        .required('A categoria é obrigatório'),
+    value: yup
+        .number()
+        .required('O valor é obrigatório')
+        .min(0, 'O valor deve ser maior que 0')
+});
+
 export const FinanceForm = () => {
+
+    const initialValues = () => {
+        return { title: '', type: '', category: '', value: '' }
+    }
 
     const [title, setTitle] = useState('');
     const [type, setType] = useState('');
     const [category, setCategory] = useState('');
     const [value, setValue] = useState(0);
 
-
-    
     const dispatch = useDispatch();
 
+    const addFinance = (values, { resetForm }) => {
 
-    const addFinance = (values, {resetForm}) => {
 
-      
         const finance = {
             id: new Date(),
             title: values.title,
@@ -44,25 +76,18 @@ export const FinanceForm = () => {
             value: values.value,
             date: new Date()
         };
-        console.log(initialValues())
-        
+
         dispatch(actionsFinance.add(finance));
-        resetForm({values:initialValues()});
+        resetForm({ values: initialValues() });
     }
 
-    const initialValues = () => {
-        return { title: '', type: '', category: '', value: '' }
-    }
+
 
     return (
         <Formik
             initialValues={initialValues()}
-            validate={(values) => {
-                const errors = {};
-                if (values.value < 0) {
-                    errors.value = 'O valor deve ser um valor válido'
-                }
-            }}
+            validationSchema={esquema}
+
             onSubmit={addFinance}
         >
             {(props) => (
@@ -79,13 +104,18 @@ export const FinanceForm = () => {
                     />
 
                     <Field
-                        type="text"
+                        type="select"
                         id="type"
                         name="type"
                         label="Tipo"
                         onChange={props.handleChange}
+                        defaultValue={financiesType.Exit}
+                    >
+                        <option value={financiesType.Exit}>{financiesType.Exit}</option>
+                        <option value={financiesType.Entrie} >{financiesType.Entrie}</option>
 
-                    />
+
+                    </Field>
 
                     <Field
                         type="text"
@@ -108,7 +138,7 @@ export const FinanceForm = () => {
 
 
                     <button type='reset' onClick={props.handleReset}>Limpar</button>
-                    <button type="submit">Adicionar</button>
+                    <button type="submit" disabled={!(props.isValid && props.dirty)} >Adicionar</button>
                 </form>
             )}
         </Formik>
