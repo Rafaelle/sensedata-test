@@ -3,21 +3,20 @@ import { useSelector } from 'react-redux';
 
 
 export const FinanceSummary = () =>{
-    const {total, totalEntries,totalExits} = useSelector(state => state.financiesReducers);
-    console.log(total, totalEntries, totalExits)
+    const {totalFinances} = useSelector(state => state.financiesReducers);
 
     return (
         <div>
             <div>
-                Entradas: R${totalEntries}
+                Entradas: R${totalFinances.totalEntries}
             </div>
 
             <div>
-                Saídas: R${totalExits}
+                Saídas: R${totalFinances.totalExits}
             </div>
 
             <div>
-                TOTAL: R${total}
+                TOTAL: R${totalFinances.total}
             </div>
         </div>
     )

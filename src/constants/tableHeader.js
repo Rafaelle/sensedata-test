@@ -4,5 +4,5 @@ export const tableHeader = {
     type:'Tipo',
     category: 'Categoria',
     value:'Valor',
-    data:'Data'
+    date:'Data'
 }

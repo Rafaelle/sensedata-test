@@ -2,51 +2,28 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { actions as actionsFinance } from '../../actions/financies.action';
 import { Formik, useField } from 'formik';
-import * as yup from 'yup';
-import { fiancesCategories, financiesType } from '../../constants/financies';
+import { financiesType,fiancesCategories } from '../../constants/financies';
 
 import { Field } from '../field/Field';
 
-//https://www.youtube.com/watch?v=BqVH9Z_6p38
-const validation = yup.object({
-    title: yup
-        .string()
-        .required('O nome é obrigatório'),
-    type: yup
-        .string()
-        .required('O tipo é obrigatório'),
-    category: yup
-        .string()
-        .required('A categoria é obrigatório'),
-    value: yup
-        .number()
-        .required('O valor é obrigatório')
-        .min(0, 'O valor deve ser maior que 0')
-});
 
-export const FinanceForm = () => {
+export const FinanceFilter = () => {
 
     const initialValues = () => {
-        return { title: '', type: '', category: '', value: '' }
+        return { type: '', category: '' }
     }
 
-    const [title, setTitle] = useState('');
+    //const [title, setTitle] = useState('');
     const [type, setType] = useState('');
     const [category, setCategory] = useState('');
-    const [value, setValue] = useState(0);
+   // const [value, setValue] = useState(0);
 
     const dispatch = useDispatch();
 
-    const addFinance = (values, { resetForm }) => {
-        const finance = {
-            id: new Date(),
-            title: values.title,
-            type: values.type,
-            category: values.category,
-            value: values.value,
-            date: new Date()
-        };
-        dispatch(actionsFinance.add(finance));
+    const filter = (values, { resetForm }) => {
+        console.log(values)
+
+        dispatch(actionsFinance.filter(values.type, values.category));
         resetForm({ values: initialValues() });
     }
 
@@ -55,21 +32,11 @@ export const FinanceForm = () => {
     return (
         <Formik
             initialValues={initialValues()}
-            validationSchema={validation}
-
-            onSubmit={addFinance}
+            onSubmit={filter}
         >
             {(props) => (
 
                 <form onSubmit={props.handleSubmit}>
-                    <Field
-                        type="text"
-                        id="title"
-                        name="title"
-                        label="Título"
-                        onChange={props.handleChange}
-                    />
-
                     <Field
                         type="select"
                         id="type"
@@ -102,20 +69,8 @@ export const FinanceForm = () => {
 
 
                     </Field>
-
-             
-
-                    <Field
-                        type="number"
-                        id="value"
-                        name="value"
-                        label="Valor"
-                        onChange={props.handleChange}
-
-                    />
-
                     <button type='reset' onClick={props.handleReset}>Limpar</button>
-                    <button type="submit" disabled={!(props.isValid && props.dirty)} >Adicionar</button>
+                    <button type="submit" >Filtrar</button>
                 </form>
             )}
         </Formik>
