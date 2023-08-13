@@ -12,15 +12,13 @@ export const FinanceFilter = () => {
     const initialValues = () => {
         return { type: '', category: '' }
     }
-
+/*
     const [type, setType] = useState('');
     const [category, setCategory] = useState('');
-
+*/
     const dispatch = useDispatch();
-    const filter = (values, { resetForm }) => {
-        console.log(values)
+    const filter = (values) => {
         dispatch(actionsFinance.filter(values.type, values.category));
-        resetForm({ values: initialValues() });
     }
 
     return (
@@ -38,7 +36,7 @@ export const FinanceFilter = () => {
                         label="Tipo"
                         onChange={props.handleChange}
                     >
-                        <option value=''>Tipo</option>
+                        <option value=''>Todos</option>
                         {Object.values(financiesType).map((type, index)=>(
                             <option  key={index} value={type}>{type}</option>
 
@@ -53,7 +51,7 @@ export const FinanceFilter = () => {
                         onChange={props.handleChange}
                     >
 
-                        <option value=''>Categoria</option>
+                        <option value=''>Todos</option>
                         {Object.values(fiancesCategories).map((type, index)=>(
                             <option  key={index} value={type}>{type}</option>
 

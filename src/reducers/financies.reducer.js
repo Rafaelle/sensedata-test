@@ -1,6 +1,6 @@
 import { actionsTypes, financiesType } from '../constants/financies';
 
-// localstorage
+
 const INITIAL_STATE = {
   financies: [],
   filteredFinancies: [],
@@ -9,66 +9,63 @@ const INITIAL_STATE = {
     totalEntries: 0,
     totalExits: 0
   },
+  financeFilter: {
+    category: '',
+    type: ''
+  }
 };
 
+
 const reducers = (state = INITIAL_STATE, action) => {
-  let financies;
-  let entries;
-  let exits;
-  let filteredFinancies;
+  let newState = { ...INITIAL_STATE }
 
-  const calculateEntries = (financies) => {
+  const calculateEntries = (fin) => {
 
-    return financies? finances.filter(f => f.type === financiesType.Entrie)
-      .reduce((acc, f) => acc + f.value, 0):0;
+    return fin ? fin.filter(f => f.type === financiesType.Entrie)
+      .reduce((acc, f) => acc + f.value, 0) : 0;
   }
 
-  const calculateExists = (financies) => {
-    return finances?
-    financies.filter(f => f.type === financiesType.Exit)
-      .reduce((acc, f) => acc + f.value, 0):0;
+  const calculateExists = (fin) => {
+    return fin ?
+      fin.filter(f => f.type === financiesType.Exit)
+        .reduce((acc, f) => acc + f.value, 0) : 0;
   }
-
 
   switch (action.type) {
+
     case actionsTypes.ADD_FINANCE:
-      financies = [...state.financies, { ...action.payload }];
-      filteredFinancies = [...financies];
+      newState.financies = [...state.financies, { ...action.payload }];
+      newState.filteredFinancies = [...newState.financies];
+      newState.totalFinances.totalEntries = calculateEntries(newState.financies);
+      newState.totalFinances.totalExits = calculateExists(newState.financies);
       break;
     case actionsTypes.REMOVE_FINANCE:
-      financies = state.financies.filter(x => x.id !== action.payload.id);
-      filteredFinancies = [...financies];
+      newState.financie = state.financies.filter(x => x.id !== action.payload.id);
+      newState.filteredFinancies = [...newState.financies];
+      newState.totalFinances.totalEntries = calculateEntries(newState.financies);
+      newState.totalFinances.totalExits = calculateExists(newState.financies);
       break
     case actionsTypes.FILTER_FINANCE:
-      console.log(action.payload);
-      filteredFinancies = [...state.financies];
-      
-      if(action.payload.type != ''){
-        filteredFinancies = filteredFinancies?.filter(f=> f.type == action.payload.type );
+      newState.financeFilter.type = action.payload.type;
+      newState.financeFilter.category = action.payload.category;
+
+      if (action.payload.type != '') {
+        newState.filteredFinancies = newState.filteredFinancies?.filter(f => f.type == action.payload.type);
       }
 
-      if(action.payload.category != ''){
-        filteredFinancies = filteredFinancies?.filter(f=> f.category == action.payload.category);
+      if (action.payload.category != '') {
+        newState.filteredFinancies = newState.filteredFinancies?.filter(f => f.category == action.payload.category);
       }
-
-
-
       break;
     default:
       return state;
   }
-  entries = calculateEntries(financies);
-  exits = calculateExists(financies);
-  console.log(entries, exits)
 
-  return {
-    financies: financies,
-    totalFinances: {
-      total: entries - exits,
-      totalEntries: entries,
-      totalExits: exits
-    }
-  };
+
+  newState.totalFinances.total = newState.totalFinances.totalEntries - newState.totalFinances.totalExits;
+
+
+  return newState;
 };
 
 export { reducers };

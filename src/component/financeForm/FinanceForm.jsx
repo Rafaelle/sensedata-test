@@ -29,12 +29,12 @@ export const FinanceForm = () => {
     const initialValues = () => {
         return { title: '', type: '', category: '', value: '' }
     }
-
+/*
     const [title, setTitle] = useState('');
     const [type, setType] = useState('');
     const [category, setCategory] = useState('');
     const [value, setValue] = useState(0);
-
+*/
     const dispatch = useDispatch();
 
     const addFinance = (values, { resetForm }) => {
