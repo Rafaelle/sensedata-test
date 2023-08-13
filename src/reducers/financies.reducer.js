@@ -19,13 +19,14 @@ const reducers = (state = INITIAL_STATE, action) => {
 
   const calculateEntries = (financies) => {
 
-    return financies?.filter(f => f.type === financiesType.Entrie)
-      .reduce((acc, f) => acc + f.value, 0);
+    return financies? finances.filter(f => f.type === financiesType.Entrie)
+      .reduce((acc, f) => acc + f.value, 0):0;
   }
 
   const calculateExists = (financies) => {
-    return financies?.filter(f => f.type === financiesType.Exit)
-      .reduce((acc, f) => acc + f.value, 0);
+    return finances?
+    financies.filter(f => f.type === financiesType.Exit)
+      .reduce((acc, f) => acc + f.value, 0):0;
   }
 
 
@@ -58,6 +59,8 @@ const reducers = (state = INITIAL_STATE, action) => {
   }
   entries = calculateEntries(financies);
   exits = calculateExists(financies);
+  console.log(entries, exits)
+
   return {
     financies: financies,
     totalFinances: {
