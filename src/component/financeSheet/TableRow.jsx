@@ -1,8 +1,16 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { actions } from '../../actions/financies.action';
+import * as yup from 'yup';
 
-export const TableRow = ({ finance, columns }) => {
+
+
+
+
+
+
+
+export const TableRow = ({ finance, columns, edit=false }) => {
     const dispatch = useDispatch();
 
     return (

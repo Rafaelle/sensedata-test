@@ -40,7 +40,7 @@ const reducers = (state = INITIAL_STATE, action) => {
       newState.totalFinances.totalExits = calculateExists(newState.financies);
       break;
     case actionsTypes.REMOVE_FINANCE:
-      newState.financie = state.financies.filter(x => x.id !== action.payload.id);
+      newState.financies = state.financies.filter(x => x.id !== action.payload.id);
       newState.filteredFinancies = [...newState.financies];
       newState.totalFinances.totalEntries = calculateEntries(newState.financies);
       newState.totalFinances.totalExits = calculateExists(newState.financies);
