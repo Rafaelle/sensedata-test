@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { FinanceFilter } from './FinanceFilter';
 
 export const FinanceSheet = () => {
-    const financies = useSelector(state => state.financiesReducers.financies);
+    const {filteredFinancies} = useSelector(state => state.financiesReducers);
 
 
     return (
@@ -26,7 +26,7 @@ export const FinanceSheet = () => {
                 </thead>
 
                 <tbody>
-                    {financies.map((finance, i) => (
+                    {filteredFinancies?.map((finance, i) => (
 
                         <TableRow key={finance.id} finance={finance} columns={Object.keys(tableHeader)}></TableRow>
                     ))}

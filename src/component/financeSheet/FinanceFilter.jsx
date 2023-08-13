@@ -13,21 +13,15 @@ export const FinanceFilter = () => {
         return { type: '', category: '' }
     }
 
-    //const [title, setTitle] = useState('');
     const [type, setType] = useState('');
     const [category, setCategory] = useState('');
-   // const [value, setValue] = useState(0);
 
     const dispatch = useDispatch();
-
     const filter = (values, { resetForm }) => {
         console.log(values)
-
         dispatch(actionsFinance.filter(values.type, values.category));
         resetForm({ values: initialValues() });
     }
-
-
 
     return (
         <Formik
@@ -49,8 +43,6 @@ export const FinanceFilter = () => {
                             <option  key={index} value={type}>{type}</option>
 
                         ))}
-
-
                     </Field>
 
                     <Field
