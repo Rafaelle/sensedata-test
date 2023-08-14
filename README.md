@@ -55,3 +55,5 @@ Bônus
 - Mostrar subtotal de entradas / saídas de acordo com o filtro de categoria.
 A entrega deve ser feita em um repositório público do GitHub e um link com a aplicação rodando.
 
+## Link da aplicação rodando
+https://senfinanca-sensedata-rafaelle.netlify.app/
