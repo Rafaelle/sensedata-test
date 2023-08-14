@@ -31,6 +31,9 @@ export const FinanceSheet = () => {
             <div className='filter'>
                 <FinanceFilter></FinanceFilter>
             </div>
+
+            <div className='div-table'>
+
             <table >
                 <thead>
                     <tr>
@@ -87,6 +90,9 @@ export const FinanceSheet = () => {
                 }
 
             </table>
+
+            </div>
+
         </div>
 
     )

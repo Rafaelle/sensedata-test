@@ -2,17 +2,22 @@
     display: flex;
     flex-direction: column;
     padding: 1em;
+
+}
+.finance-sheet .div-table{
+
+    overflow-x: auto;
 }
 
-.finance-sheet table {
+.finance-sheet .div-table table {
     border-collapse: separate;
     border-spacing: 0 15px;
-    display: block;
-    overflow-x: auto;
+
+    width: 100%;
 
 }
 
-.finance-sheet table thead tr {
+.finance-sheet .div-table table thead tr {
     text-align: center;
     font-size: 14px;
     font-style: normal;
@@ -21,7 +26,7 @@
     border-radius: 8px;
 }
 
-.finance-sheet table tbody tr {
+.finance-sheet .div-table table tbody tr {
     background-color: #ffffff;
     padding: 2em;
     border-radius: 8px;
@@ -29,15 +34,15 @@
 
 
 
-.finance-sheet table tbody tr td:first-child {
+.finance-sheet  .div-table table tbody tr td:first-child {
     border-radius: 10px 0 0 10px;
 }
 
-.finance-sheet table tbody tr td:last-child {
+.finance-sheet .div-table table tbody tr td:last-child {
     border-radius: 0 10px 10px 0;
 }
 
-.finance-sheet table tbody tr td {
+.finance-sheet .div-table table tbody tr td {
     padding: 1em;
 }
 
