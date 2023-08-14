@@ -1,0 +1,53 @@
+.finance-sheet{
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.finance-sheet table{
+    border-collapse: separate;
+    border-spacing: 0 15px;
+
+
+}
+
+.finance-sheet table thead tr {
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.finance-sheet table tbody tr {
+    background-color: #ffffff;
+    padding: 2em;
+}
+
+
+.finance-sheet table tbody tr td {
+    padding: 1em;
+}
+
+
+.actions-btn button{
+    margin: 0 0.5em;
+    cursor: pointer;
+    border:none;
+    padding: 0.5em;
+    border-radius: 5px;
+
+}
+
+
+.actions-btn .edit:focus, .actions-btn .edit:hover{
+    outline:0;
+    background-color: #afafaf;
+
+}
+
+.remove:focus , .remove:hover{
+    outline:0;
+    background-color: #d1a4a4;
+}
+

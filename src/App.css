@@ -3,6 +3,31 @@
   width: 100%;
   background-color: #dedede;
   height: 100vh;
-  
 }
+
+
+
+.header {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.header span {
+  color: #9B9B9B;
+text-align: center;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin-left: 0.5rem;
+align-self: flex-end;
+}
+
+
+.main{
+  padding: 0 2em 2em;
+}
+
 

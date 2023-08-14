@@ -1,0 +1,22 @@
+.filter{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.filter-btn button{
+    margin: 0 0.5em;
+    cursor: pointer;
+    border:none;
+    padding: 0.5em;
+    border-radius: 5px;
+
+}
+
+
+.filter-btn button:focus, .filter-btn button:hover{
+    outline:0;
+    background-color: #afafaf;
+
+}

@@ -50,19 +50,19 @@ const reducers = (state = INITIAL_STATE, action) => {
 
       let index = newState.financies.findIndex(x => x.id == action.payload.id);
       if(index>-1){
-        delete newState.financies[index];
-        newState.financies = [ { ...action.payload },...newState.financies];
+        //delete newState.financies[index];
+        //newState.financies = [ { ...action.payload },...newState.financies];
+        newState.financies[index] = action.payload;
 
       }
 
       
-      let indexFiltered = newState.filteredFinancies.findIndex(x => x.id == action.payload.id);
+      let indexFiltered = newState.filteredFinancies.findIndex(x => x.id === action.payload.id);
       if(indexFiltered>-1){
-        delete newState.filteredFinancies[indexFiltered];
-        newState.filteredFinancies = [ { ...action.payload },...newState.filteredFinancies];
-        // newState.filteredFinancies[indexFiltered] = action.payload;
+        //delete newState.filteredFinancies[indexFiltered];
+        //newState.filteredFinancies = [ { ...action.payload },...newState.filteredFinancies];
+         newState.filteredFinancies[indexFiltered] = action.payload;
       }
-      console.log(newState)
 
       newState.totalFinances.totalEntries = calculateEntries(newState.financies);
       newState.totalFinances.totalExits = calculateExists(newState.financies);

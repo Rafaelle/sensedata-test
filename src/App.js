@@ -10,9 +10,15 @@ import { FinanceSummary } from './component/financeSummary/FinanceSummary';
 function App() {
   return (
     <div className="App">
-      <FinanceForm ></FinanceForm>
-      <FinanceSummary></FinanceSummary>
-      <FinanceSheet ></FinanceSheet>
+      <h2 className='header'>
+       SenFinança <span> versão 1.0</span>
+      </h2>
+      <div className='main'>
+
+        <FinanceSummary></FinanceSummary>
+        <FinanceForm ></FinanceForm>
+        <FinanceSheet ></FinanceSheet>
+      </div>
     </div>
   );
 }

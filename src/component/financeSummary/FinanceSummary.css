@@ -1,13 +1,69 @@
-.summary{
+.summary {
     display: flex;
     text-align: center;
     justify-content: center;
-    background-color: white;
     border-radius: 2em;
-    margin: 0 2rem;
     flex-wrap: wrap;
+    justify-content: space-between;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 
-.summary div {
-    margin: 0.5rem 1rem
+.summary .card {
+    margin: 0.5rem 1rem;
+    background-color: white;
+    border-radius: 8px;
+    flex-grow: 1;
+    display: flex;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 1em 2em ;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.total{
+    background-color: #cecece;
+}
+
+.in{
+    background-color: rgb(171, 241, 200);
+}
+
+.out {
+    background-color: rgb(238, 181, 181);
+}
+
+
+.data{
+    padding: 1em 0.5em;
+    margin-left: 1em;
+}
+
+
+.title {
+    color: #9B9B9B;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    text-align: left;
+}
+
+
+.number {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #010101;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0 ;
 }

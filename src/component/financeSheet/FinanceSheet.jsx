@@ -6,6 +6,7 @@ import { FinanceFilter } from './FinanceFilter';
 import { useDispatch } from 'react-redux';
 import { actions } from '../../actions/financies.action';
 import EditableRow from './EditableRow';
+import "./FinanceSheet.css";
 
 export const FinanceSheet = () => {
     const { filteredFinancies } = useSelector(state => state.financiesReducers);
@@ -24,12 +25,12 @@ export const FinanceSheet = () => {
 
 
     return (
-        <div>
+        <div className='finance-sheet'>
 
-            <div>
+            <div className='filter'>
                 <FinanceFilter></FinanceFilter>
             </div>
-            <table>
+            <table >
                 <thead>
                     <tr>
                         {Object.values(tableHeader).map((th, index) => (
@@ -54,26 +55,14 @@ export const FinanceSheet = () => {
                             ) : (
                                 <tr>
                                     <TableRow key={finance.id} finance={finance} columns={Object.keys(tableHeader)}></TableRow>
-                                    <td>
-                                        <button onClick={() => handleEdit(index)}>Editar</button>
-                                        <button onClick={() => dispatch(actions.remove(finance))}>&times;</button>
+                                    <td className='actions-btn'>
+                                        <button className='edit' onClick={() => handleEdit(index)}>Editar</button>
+                                        <button className='remove' onClick={() => dispatch(actions.remove(finance))}>Remover</button>
 
                                     </td>
                                 </tr>
                             )}
                         </React.Fragment>
-
-
-                        /* <tr>
-                             <TableRow key={finance.id} finance={finance} columns={Object.keys(tableHeader)}></TableRow>
- 
-                             <td>
-                     <button onClick={() => handleEdit(i)}>Editar</button>
-                     <button onClick={() => dispatch(actions.remove(finance))}>&times;</button>
-                 </td>
-                         </tr>*/
-
-                        /* <TableRow key={finance.id} finance={finance} columns={Object.keys(tableHeader)}></TableRow>*/
                     ))}
 
                 </tbody>
