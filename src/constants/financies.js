@@ -4,7 +4,8 @@ import * as yup from 'yup';
 const actionsTypes = {
   ADD_FINANCE: 'ADD_FINANCE',
   REMOVE_FINANCE: 'REMOVE_FINANCE',
-  FILTER_FINANCE: 'FILTER_FINANCE'
+  FILTER_FINANCE: 'FILTER_FINANCE',
+  EDIT_FINANCE: 'EDIT_FINANCE'
 };
 
 const financiesType = {

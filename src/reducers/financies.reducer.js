@@ -8,10 +8,6 @@ const INITIAL_STATE = {
     total: 0,
     totalEntries: 0,
     totalExits: 0
-  },
-  financeFilter: {
-    category: '',
-    type: ''
   }
 };
 
@@ -31,10 +27,15 @@ const reducers = (state = INITIAL_STATE, action) => {
         .reduce((acc, f) => acc + f.value, 0) : 0;
   }
 
+  
+  newState.financies = [...state.financies];
+  newState.filteredFinancies = [...newState.financies];
+
+
   switch (action.type) {
 
     case actionsTypes.ADD_FINANCE:
-      newState.financies = [...state.financies, { ...action.payload }];
+      newState.financies = [ { ...action.payload },...state.financies];
       newState.filteredFinancies = [...newState.financies];
       newState.totalFinances.totalEntries = calculateEntries(newState.financies);
       newState.totalFinances.totalExits = calculateExists(newState.financies);
@@ -44,17 +45,40 @@ const reducers = (state = INITIAL_STATE, action) => {
       newState.filteredFinancies = [...newState.financies];
       newState.totalFinances.totalEntries = calculateEntries(newState.financies);
       newState.totalFinances.totalExits = calculateExists(newState.financies);
-      break
+      break;
+    case actionsTypes.EDIT_FINANCE:
+
+      let index = newState.financies.findIndex(x => x.id == action.payload.id);
+      if(index>-1){
+        delete newState.financies[index];
+        newState.financies = [ { ...action.payload },...newState.financies];
+
+      }
+
+      
+      let indexFiltered = newState.filteredFinancies.findIndex(x => x.id == action.payload.id);
+      if(indexFiltered>-1){
+        delete newState.filteredFinancies[indexFiltered];
+        newState.filteredFinancies = [ { ...action.payload },...newState.filteredFinancies];
+        // newState.filteredFinancies[indexFiltered] = action.payload;
+      }
+      console.log(newState)
+
+      newState.totalFinances.totalEntries = calculateEntries(newState.financies);
+      newState.totalFinances.totalExits = calculateExists(newState.financies);
+
+      break;
+
     case actionsTypes.FILTER_FINANCE:
-      newState.financeFilter.type = action.payload.type;
-      newState.financeFilter.category = action.payload.category;
+      newState.financies = [...state.financies];
+      newState.filteredFinancies = [...newState.financies];
 
       if (action.payload.type != '') {
-        newState.filteredFinancies = newState.filteredFinancies?.filter(f => f.type == action.payload.type);
+        newState.filteredFinancies = newState.filteredFinancies?.filter(f => f.type === action.payload.type);
       }
 
       if (action.payload.category != '') {
-        newState.filteredFinancies = newState.filteredFinancies?.filter(f => f.category == action.payload.category);
+        newState.filteredFinancies = newState.filteredFinancies?.filter(f => f.category === action.payload.category);
       }
       break;
     default:

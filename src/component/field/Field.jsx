@@ -1,12 +1,14 @@
 import React from "react";
-import { Formik, useField } from 'formik';
+import { useField } from 'formik';
 
 
 export const Field = ({ label, ...props }) => {
     const [field, meta] = useField(props);
     return (
         <div className="form-group">
-            <label htmlFor={props.id}>{label}</label>
+            {label?
+            <label htmlFor={props.id}>{label}</label>:null
+            }
 
             { props.type == 'select'? 
             <select

@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { actions as actionsFinance } from '../../actions/financies.action';
-import { Formik, useField } from 'formik';
+import { Formik } from 'formik';
 import {validation } from '../../constants/financies';
 
-import { Field } from '../field/Field';
 import { TitleField } from '../field/TitleField';
 import { TypeField } from '../field/TypeField';
 import { CategoryField} from '../field/CategoryField';
 import { ValueField } from '../field/ValueField';
+
+import './Financeform.css'
 
 
 export const FinanceForm = () => {
@@ -26,17 +27,16 @@ export const FinanceForm = () => {
 
     const addFinance = (values, { resetForm }) => {
         const finance = {
-            id: new Date(),
+            id: new Date().toISOString(),
             title: values.title,
             type: values.type,
             category: values.category,
             value: values.value,
-            date: new Date()
+            date: new Date().toISOString()
         };
         dispatch(actionsFinance.add(finance));
         resetForm({ values: initialValues() });
     }
-
 
 
     return (
@@ -49,10 +49,17 @@ export const FinanceForm = () => {
             {(props) => (
 
                 <form onSubmit={props.handleSubmit}>
+                    <div className='formRow'>
                    <TitleField props={props}></TitleField>
+                   <ValueField  props={props}></ValueField>
+
+                    </div>
+                    <div className='formRow'>
+
                    <TypeField props={props}></TypeField>
                    <CategoryField props={props}></CategoryField>
-                   <ValueField  props={props}></ValueField>
+
+                    </div>
 
                     <button type='reset' onClick={props.handleReset}>Limpar</button>
                     <button type="submit" disabled={!(props.isValid && props.dirty)} >Adicionar</button>

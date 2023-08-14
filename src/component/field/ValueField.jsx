@@ -10,7 +10,7 @@ export const ValueField = ({props}) => {
         id="value"
         name="value"
         label="Valor"
-        onChange={props.handleChange}
+        onChange={props?.handleChange}
 
     />
 

@@ -9,6 +9,10 @@ const actions = {
     type: actionsTypes.REMOVE_FINANCE,
     payload: finance,
   }),
+  edit: finance =>({
+    type: actionsTypes.EDIT_FINANCE,
+    payload: finance
+  }),
   filter: (type, category) =>({
     type: actionsTypes.FILTER_FINANCE,
     payload: {type:type, category:category}

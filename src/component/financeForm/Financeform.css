@@ -1,0 +1,12 @@
+
+
+.formRow{
+    display: flex;
+    flex-direction: row;
+}
+
+.formRow .form-group{
+    flex-grow: 1;
+    width: 100%;
+
+}
