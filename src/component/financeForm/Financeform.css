@@ -1,12 +1,57 @@
 
-
-.formRow{
-    display: flex;
-    flex-direction: row;
+.finance-form{
+ background-color: #ffffff;
+ margin: 1em;
+ border-radius: 8px;
+ padding: 0.5em 0 ;
 }
 
-.formRow .form-group{
-    flex-grow: 1;
-    width: 100%;
+.finance-form h4 {
+    text-align: initial;
+    padding: 0 1em;
+    margin: 1em;
+}
+
+
+.finance-form label {
+    color:#000000
+}
+
+
+.finance-form form .form-row {
+    display: flex;
+}
+
+.finance-form .form-group div:first-child {
+    display: flex;
+}
+
+
+.finance-form .action-btn{
+    display: flex;
+    justify-content: end;
+    margin-top: 1em;
+    padding: 0.5em 1em;
+}
+
+
+.finance-form button{
+    margin: 0 0.5em;
+    cursor: pointer;
+    border:none;
+    padding: 0.5em;
+    border-radius: 5px;
+    height: fit-content;
+
+}
+
+
+.finance-form .reset:focus, .finance-form .reset:hover{
+    outline:0;
+    background-color: #afafaf;
+}
+
+.submit-btn:focus, .submit-btn:hover{
+    background-color: rgb(184, 207, 188);
 
 }

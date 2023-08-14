@@ -8,6 +8,11 @@ const INITIAL_STATE = {
     total: 0,
     totalEntries: 0,
     totalExits: 0
+  },
+  totalFiltered: {
+    total: 0,
+    totalEntries: 0,
+    totalExits: 0
   }
 };
 
@@ -37,41 +42,28 @@ const reducers = (state = INITIAL_STATE, action) => {
     case actionsTypes.ADD_FINANCE:
       newState.financies = [ { ...action.payload },...state.financies];
       newState.filteredFinancies = [...newState.financies];
-      newState.totalFinances.totalEntries = calculateEntries(newState.financies);
-      newState.totalFinances.totalExits = calculateExists(newState.financies);
       break;
     case actionsTypes.REMOVE_FINANCE:
       newState.financies = state.financies.filter(x => x.id !== action.payload.id);
       newState.filteredFinancies = [...newState.financies];
-      newState.totalFinances.totalEntries = calculateEntries(newState.financies);
-      newState.totalFinances.totalExits = calculateExists(newState.financies);
       break;
     case actionsTypes.EDIT_FINANCE:
 
       let index = newState.financies.findIndex(x => x.id == action.payload.id);
       if(index>-1){
-        //delete newState.financies[index];
-        //newState.financies = [ { ...action.payload },...newState.financies];
         newState.financies[index] = action.payload;
-
       }
 
       
       let indexFiltered = newState.filteredFinancies.findIndex(x => x.id === action.payload.id);
       if(indexFiltered>-1){
-        //delete newState.filteredFinancies[indexFiltered];
-        //newState.filteredFinancies = [ { ...action.payload },...newState.filteredFinancies];
          newState.filteredFinancies[indexFiltered] = action.payload;
       }
 
-      newState.totalFinances.totalEntries = calculateEntries(newState.financies);
-      newState.totalFinances.totalExits = calculateExists(newState.financies);
 
       break;
 
     case actionsTypes.FILTER_FINANCE:
-      newState.financies = [...state.financies];
-      newState.filteredFinancies = [...newState.financies];
 
       if (action.payload.type != '') {
         newState.filteredFinancies = newState.filteredFinancies?.filter(f => f.type === action.payload.type);
@@ -85,8 +77,14 @@ const reducers = (state = INITIAL_STATE, action) => {
       return state;
   }
 
+  newState.totalFinances.totalEntries = calculateEntries(newState.financies);
+  newState.totalFinances.totalExits = calculateExists(newState.financies);
 
-  newState.totalFinances.total = newState.totalFinances.totalEntries - newState.totalFinances.totalExits;
+  newState.totalFiltered.totalEntries = calculateEntries(newState.filteredFinancies);
+  newState.totalFiltered.totalExits = calculateExists(newState.filteredFinancies);
+
+  newState.totalFinances.total = newState.totalFiltered.totalEntries - newState.totalFiltered.totalExits;
+  newState.totalFiltered.total = newState.totalFiltered.totalEntries - newState.totalFiltered.totalExits;
 
 
   return newState;

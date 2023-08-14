@@ -9,7 +9,8 @@ import EditableRow from './EditableRow';
 import "./FinanceSheet.css";
 
 export const FinanceSheet = () => {
-    const { filteredFinancies } = useSelector(state => state.financiesReducers);
+    const { filteredFinancies, totalFiltered } = useSelector(state => state.financiesReducers);
+
     const dispatch = useDispatch();
     const [editingIndex, setEditingIndex] = useState(null);
 
@@ -62,10 +63,29 @@ export const FinanceSheet = () => {
                                     </td>
                                 </tr>
                             )}
+
+
                         </React.Fragment>
                     ))}
 
                 </tbody>
+
+                {
+                    totalFiltered ? <tfoot >
+                        <tr>
+                            <th scope="row">Total Parcial</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total: {totalFiltered.total}</td>
+                            <td>Entradas: {totalFiltered.totalEntries}</td>
+
+                            <td>Saídas: {totalFiltered.totalExits}</td>
+
+                        </tr>
+                    </tfoot> : null
+                }
+
             </table>
         </div>
 

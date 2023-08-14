@@ -34,6 +34,7 @@ export const FinanceFilter = () => {
                         id="type"
                         name="type"
                         label="Tipo"
+                        value = {props?.value?.type}
                         onChange={props.handleChange}
                     >
                         <option value=''>Todos</option>
@@ -48,6 +49,8 @@ export const FinanceFilter = () => {
                         id="category"
                         name="category"
                         label="Categoria"
+                        value = {props?.value?.category}
+
                         onChange={props.handleChange}
                     >
 

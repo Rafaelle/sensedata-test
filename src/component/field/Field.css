@@ -1,3 +1,28 @@
-.form-group{
-    
+label{
+    margin-right: 0.5em;
+    font-size:14px;
+    cursor: pointer;
+
 }
+
+.form-group{
+    flex-grow: 1;
+    display: flex;
+    margin: 0 2em;
+    flex-direction: column;
+}
+
+
+.is-invalid{}
+
+input, select {
+    color: #4a5568;
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    display: inline-block;
+  }
+
+

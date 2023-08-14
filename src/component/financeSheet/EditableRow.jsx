@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik} from 'formik';
 import { actions as actionsFinance } from '../../actions/financies.action';
 import { useField } from 'formik';
-
+import './FinanceSheet.css'
 
 import { financiesType, fiancesCategories, validation } from '../../constants/financies';
 
@@ -35,7 +35,7 @@ const EditableRow = ({ finance, columns, onCancel }) => {
                 component = finance[c];
                 break;
             case 'date':
-                finance[c].toString();
+                component = finance[c].toString();
                 break;
             case 'title':
 
@@ -132,9 +132,9 @@ const EditableRow = ({ finance, columns, onCancel }) => {
 
 
 
-            <td>
-                <button type="submit" onClick={formik.handleSubmit}>Salvar</button>
-                <button type="button" onClick={onCancel}>Cancelar</button>
+            <td  className='actions-btn'>
+                <button className='btn' type="submit" onClick={formik.handleSubmit}>Salvar</button>
+                <button className='btn' type="button" onClick={onCancel}>Cancelar</button>
             </td>
         </tr>
     );
