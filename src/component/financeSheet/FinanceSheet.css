@@ -7,6 +7,9 @@
 .finance-sheet table {
     border-collapse: separate;
     border-spacing: 0 15px;
+    display: block;
+    overflow-x: auto;
+
 }
 
 .finance-sheet table thead tr {

@@ -4,6 +4,7 @@
     width: 100%;
     background-color: rgba(14,64,122,1);
     border-radius: 8px;
+    flex-wrap: wrap;
 }
 
 button{
@@ -13,13 +14,33 @@ button{
     padding: 1em;
 }
 
+
+.filter form .form-group{
+    flex-grow: 1;
+    display: flex;
+    margin: 0.5em 2;
+    flex-direction: column;
+}
+
+
+.filter .form-group div{
+    margin: 0.5em 0;
+}
+
+
+.filter-btn{
+    display: flex;
+    align-items: center;
+
+}
+
 .filter-btn button{
     margin: 0 0.5em;
     cursor: pointer;
     border:none;
     padding: 0.5em;
     border-radius: 5px;
-
+    height: fit-content;
 }
 
 

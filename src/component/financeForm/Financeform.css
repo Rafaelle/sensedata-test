@@ -20,6 +20,10 @@
 
 .finance-form form .form-row {
     display: flex;
+    flex-wrap: wrap;
+}
+.finance-form .form-group div{
+    margin: 0.5em 0;
 }
 
 .finance-form .form-group div:first-child {
